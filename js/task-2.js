@@ -31,5 +31,5 @@ const markup = images
       `<li class="list-image-item"><img class="task2-image" src=${image.url} alt=${image.alt} /></li>`
   )
   .join('');
-console.log(markup);
+// console.log(markup);
 document.querySelector('.gallery').insertAdjacentHTML('afterbegin', markup);
