@@ -28,8 +28,9 @@ const images = [
 const markup = images
   .map(
     image =>
-      `<li class="list-image-item"><img class="task2-image" src=${image.url} alt=${image.alt} /></li>`
+      `<li class="gallery-item"><img class="gallery-img" src="${
+        image.url
+      }" alt="${image.alt.replace(/"/g, '&quot;')}" /></li>`
   )
   .join('');
-// console.log(markup);
 document.querySelector('.gallery').insertAdjacentHTML('afterbegin', markup);

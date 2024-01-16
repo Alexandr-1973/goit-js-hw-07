@@ -8,11 +8,12 @@ function createBoxes(amount) {
   if (amount <= 100 && amount >= 1) {
     let markup = '';
     for (let i = 0; i < amount; i += 1) {
-      markup += `<div class=div${i} style="width:${30 + 10 * i}px; height:${
+      markup += `<div style="width:${30 + 10 * i}px; height:${
         30 + 10 * i
       }px; background-color:${getRandomHexColor()}"></div>`;
     }
     document.querySelector('div#boxes').innerHTML = markup;
+    document.querySelector('div#controls input').value = '';
   } else {
     return;
   }
@@ -31,9 +32,16 @@ document
 
 function onCreateButton(event) {
   destroyBoxes();
-  const quantityBoxes = document.querySelector('div#controls input').value;
-  createBoxes(quantityBoxes);
-  document.querySelector('div#controls input').value = '';
+  const quantityBoxes = Number(
+    document.querySelector('div#controls input').value
+  );
+  let isInteger = Number.isInteger(quantityBoxes);
+  if (isInteger) {
+    createBoxes(quantityBoxes);
+  } else {
+    destroyBoxes();
+    return alert('Input integer number!');
+  }
 }
 
 function onDestroyButton(event) {
